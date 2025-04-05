@@ -2,7 +2,6 @@ import { JwtPayload } from 'jsonwebtoken';
 import AppError from '../../app/utils/AppError';
 import { TImages, TProject } from './project.interface';
 import { Project } from './project.model';
-import { Express } from 'express';
 import { sendImageToCloudinary } from '../../app/utils/sendImageToCloudinary';
 import mongoose from 'mongoose';
 
