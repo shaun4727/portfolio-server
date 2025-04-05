@@ -135,3 +135,7 @@ Now, project setup is done. Hit the api described below to get the expected resu
 **DELETE** `/api/message/update-message/:message_id'`
 
 **Description:** Use to update message status. is it deleted by admin or not from admin dashboard?
+
+# Changes in code
+
+In app.ts, change origin as your client website address.
