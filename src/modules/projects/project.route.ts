@@ -48,4 +48,11 @@ router.get(
   projectControllers.projectList
 );
 
+router.get(
+  '/get-single-project/:projectId',
+  projectControllers.getSingleProjectDetail
+);
+
+router.get('/project-list-for-user', projectControllers.projectList);
+
 export const ProjectRoutes = router;

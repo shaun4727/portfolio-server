@@ -47,8 +47,21 @@ const projectList = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleProjectDetail = catchAsync(async (req, res) => {
+  const { projectId } = req.params;
+  const result = await projectServices.getProjectDetailFromDB(projectId);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Project list retrieved successfully',
+    data: result,
+  });
+});
+
 export const projectControllers = {
   projectStore,
   projectList,
   projectUpdate,
+  getSingleProjectDetail,
 };

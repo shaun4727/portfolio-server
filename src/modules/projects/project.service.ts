@@ -126,8 +126,17 @@ const getProjectListFromDB = async () => {
   }
 };
 
+const getProjectDetailFromDB = async (id: string) => {
+  try {
+    return await Project.findOne({ _id: id });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const projectServices = {
   storeProjectIntoDB,
   getProjectListFromDB,
   updateProjectIntoDB,
+  getProjectDetailFromDB,
 };
