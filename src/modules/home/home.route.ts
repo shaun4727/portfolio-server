@@ -1,8 +1,66 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { homeControllers } from './home.controller';
+import { USER_ROLE } from '../user-auth/user_auth.constant';
+import auth from '../../app/middleware/auth';
+import { upload } from '../../app/utils/sendImageToCloudinary';
+import validateMiddleware from '../../app/middleware/validateRequest';
+import { heroValidations } from './home.validation';
+import { createFolder } from '../../app/utils/CreateFolder';
 
 const router = express.Router();
 
-router.post('/hero-section-create', homeControllers.heroSectionCreate);
+router.post(
+  '/hero-section-create',
+  auth(USER_ROLE.admin),
+  createFolder,
+  upload.fields([{ name: 'thumbnail', maxCount: 1 }]),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  validateMiddleware(heroValidations.heroSectionCreateValidationSchema),
+  homeControllers.heroSectionCreate
+);
+
+router.patch(
+  '/update-hero-section',
+  auth(USER_ROLE.admin),
+
+  upload.fields([{ name: 'thumbnail', maxCount: 1 }]),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  validateMiddleware(heroValidations.heroSectionCreateValidationSchema),
+  homeControllers.heroUpdate
+);
+
+router.get(
+  '/hero-section-list',
+  auth(USER_ROLE.admin),
+  homeControllers.heroSectionList
+);
+
+// skill section
+
+router.post(
+  '/create-skill',
+  auth(USER_ROLE.admin),
+  createFolder,
+  upload.fields([{ name: 'skill_icon', maxCount: 1 }]),
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  validateMiddleware(heroValidations.skillCreateValidationSchema),
+  homeControllers.skillSectionCreate
+);
+
+router.get(
+  '/skill-section-list',
+  auth(USER_ROLE.admin),
+  homeControllers.skillSectionList
+);
 
 export const HomeRoutes = router;

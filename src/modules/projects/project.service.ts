@@ -112,9 +112,9 @@ const updateProjectIntoDB = async (
     await session.commitTransaction();
     await session.endSession();
   } catch (err: any) {
-    throw new Error(err);
     await session.commitTransaction();
     await session.endSession();
+    throw new Error(err);
   }
 };
 
