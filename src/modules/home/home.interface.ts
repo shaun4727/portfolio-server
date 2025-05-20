@@ -23,3 +23,10 @@ export type TExperience = {
   start_date: string;
   responsibilities: string[];
 };
+
+export type TBlog = {
+  _id: string;
+  content: string;
+  excerpt: string;
+  question: string;
+};

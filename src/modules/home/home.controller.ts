@@ -121,6 +121,38 @@ const getAllExperience = catchAsync(async (req, res) => {
   });
 });
 
+// blog section
+const blogSectionCreate = catchAsync(async (req, res) => {
+  await heroSectionServices.storeBlogSectionIntoDB(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Blog section data stored successfully',
+  });
+});
+
+const getAllBlogs = catchAsync(async (req, res) => {
+  const result = await heroSectionServices.getAllBlogsFromDB();
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Blogs are fetched successfully',
+    data: result,
+  });
+});
+
+const blogUpdate = catchAsync(async (req, res) => {
+  await heroSectionServices.updateBlogIntoDB(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Experience section updated successfully',
+  });
+});
+
 export const homeControllers = {
   heroSectionCreate,
   heroSectionList,
@@ -131,4 +163,7 @@ export const homeControllers = {
   experienceSectionCreate,
   getAllExperience,
   experienceUpdate,
+  blogSectionCreate,
+  getAllBlogs,
+  blogUpdate,
 };

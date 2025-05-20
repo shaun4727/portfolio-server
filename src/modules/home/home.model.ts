@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { TExperience, THeroSection, TSkill } from './home.interface';
+import { TBlog, TExperience, THeroSection, TSkill } from './home.interface';
 
 // Modified project schema
 const heroSectionSchema = new Schema<THeroSection>(
@@ -60,3 +60,17 @@ export const experienceSectionData = model<TExperience>(
   'ExperienceSection',
   experienceSectionSchema
 );
+
+// blog section schema
+const blogSectionSchema = new Schema<TBlog>(
+  {
+    content: { type: String, required: true },
+    excerpt: { type: String, required: true },
+    question: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const blogSectionData = model<TBlog>('BlogSection', blogSectionSchema);

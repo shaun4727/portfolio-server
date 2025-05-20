@@ -64,8 +64,26 @@ const experienceCreateValidationSchema = z.object({
   }),
 });
 
+const blogCreateValidationSchema = z.object({
+  body: z.object({
+    content: z.string({
+      invalid_type_error: 'Content must be string',
+      required_error: 'Content is required.',
+    }),
+    excerpt: z.string({
+      invalid_type_error: 'Excerpt must be string',
+      required_error: 'Excerpt is required.',
+    }),
+    question: z.string({
+      invalid_type_error: 'Question must be string',
+      required_error: 'Question is required.',
+    }),
+  }),
+});
+
 export const heroValidations = {
   heroSectionCreateValidationSchema,
   skillCreateValidationSchema,
   experienceCreateValidationSchema,
+  blogCreateValidationSchema,
 };

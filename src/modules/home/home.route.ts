@@ -98,4 +98,21 @@ router.get(
   homeControllers.getAllExperience
 );
 
+// create blog api
+router.post(
+  '/create-blog',
+  auth(USER_ROLE.admin),
+  validateMiddleware(heroValidations.blogCreateValidationSchema),
+  homeControllers.blogSectionCreate
+);
+
+router.get('/create-blog', auth(USER_ROLE.admin), homeControllers.getAllBlogs);
+
+router.patch(
+  '/create-blog',
+  auth(USER_ROLE.admin),
+  validateMiddleware(heroValidations.blogCreateValidationSchema),
+  homeControllers.blogUpdate
+);
+
 export const HomeRoutes = router;

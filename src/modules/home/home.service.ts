@@ -3,6 +3,7 @@ import { TExperience, THeroSection, TSkill } from './home.interface';
 import AppError from '../../app/utils/AppError';
 import { sendImageToCloudinary } from '../../app/utils/sendImageToCloudinary';
 import {
+  blogSectionData,
   experienceSectionData,
   HeroSectionData,
   skillSectionData,
@@ -171,6 +172,31 @@ const updateExperienceIntoDB = async (data: TExperience) => {
   }
 };
 
+// blog section starts
+const storeBlogSectionIntoDB = async (data: TExperience) => {
+  try {
+    return await blogSectionData.create(data);
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const getAllBlogsFromDB = async () => {
+  try {
+    return await blogSectionData.find();
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const updateBlogIntoDB = async (data: TExperience) => {
+  try {
+    await blogSectionData.updateOne({ _id: data._id }, { $set: data });
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
 export const heroSectionServices = {
   storeHeroSectionIntoDB,
   getHeroListFromDB,
@@ -181,4 +207,7 @@ export const heroSectionServices = {
   storeExperienceSectionIntoDB,
   getAllExperiencesFromDB,
   updateExperienceIntoDB,
+  storeBlogSectionIntoDB,
+  getAllBlogsFromDB,
+  updateBlogIntoDB,
 };
