@@ -39,18 +39,22 @@ const experienceCreateValidationSchema = z.object({
       invalid_type_error: 'Company Name must be string',
       required_error: 'Company Name is required.',
     }),
-    currently_working: z.boolean({
-      invalid_type_error: 'Currently Working must be boolean',
-      required_error: 'Currently Working is required.',
-    }),
+    currently_working: z
+      .boolean({
+        invalid_type_error: 'Currently Working must be boolean',
+        required_error: 'Currently Working is required.',
+      })
+      .optional(),
     designation: z.string({
       invalid_type_error: 'Designation must be string',
       required_error: 'Designation is required.',
     }),
-    end_date: z.string({
-      invalid_type_error: 'End Date must be string',
-      required_error: 'End Date is required.',
-    }),
+    end_date: z
+      .string({
+        invalid_type_error: 'End Date must be string',
+        required_error: 'End Date is required.',
+      })
+      .optional(),
     start_date: z.string({
       invalid_type_error: 'Start Date must be string',
       required_error: 'Start Date is required',

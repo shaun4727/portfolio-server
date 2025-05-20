@@ -36,11 +36,7 @@ router.patch(
   homeControllers.heroUpdate
 );
 
-router.get(
-  '/hero-section-list',
-  auth(USER_ROLE.admin),
-  homeControllers.heroSectionList
-);
+router.get('/hero-section-list', homeControllers.heroSectionList);
 
 // skill section
 
@@ -57,11 +53,7 @@ router.post(
   homeControllers.skillSectionCreate
 );
 
-router.get(
-  '/skill-section-list',
-  auth(USER_ROLE.admin),
-  homeControllers.skillSectionList
-);
+router.get('/skill-section-list', homeControllers.skillSectionList);
 
 router.patch(
   '/update-skill-section',
@@ -92,11 +84,7 @@ router.patch(
   homeControllers.experienceUpdate
 );
 
-router.get(
-  '/create-experience',
-  auth(USER_ROLE.admin),
-  homeControllers.getAllExperience
-);
+router.get('/create-experience', homeControllers.getAllExperience);
 
 // create blog api
 router.post(
@@ -106,7 +94,7 @@ router.post(
   homeControllers.blogSectionCreate
 );
 
-router.get('/create-blog', auth(USER_ROLE.admin), homeControllers.getAllBlogs);
+router.get('/create-blog', homeControllers.getAllBlogs);
 
 router.patch(
   '/create-blog',

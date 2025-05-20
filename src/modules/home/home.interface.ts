@@ -17,9 +17,9 @@ export type TSkill = {
 export type TExperience = {
   _id: string;
   company_name: string;
-  currently_working: boolean;
+  currently_working?: boolean;
   designation: string;
-  end_date: string;
+  end_date?: string;
   start_date: string;
   responsibilities: string[];
 };
