@@ -63,4 +63,39 @@ router.get(
   homeControllers.skillSectionList
 );
 
+router.patch(
+  '/update-skill-section',
+  auth(USER_ROLE.admin),
+
+  upload.fields([{ name: 'skill_icon', maxCount: 1 }]),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  validateMiddleware(heroValidations.skillCreateValidationSchema),
+  homeControllers.skillUpdate
+);
+
+// experience section starts
+router.post(
+  '/create-experience',
+  auth(USER_ROLE.admin),
+  validateMiddleware(heroValidations.experienceCreateValidationSchema),
+  homeControllers.experienceSectionCreate
+);
+
+router.patch(
+  '/create-experience',
+  auth(USER_ROLE.admin),
+  validateMiddleware(heroValidations.experienceCreateValidationSchema),
+  homeControllers.experienceUpdate
+);
+
+router.get(
+  '/create-experience',
+  auth(USER_ROLE.admin),
+  homeControllers.getAllExperience
+);
+
 export const HomeRoutes = router;

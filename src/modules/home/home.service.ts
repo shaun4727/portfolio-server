@@ -1,8 +1,12 @@
 import { JwtPayload } from 'jsonwebtoken';
-import { THeroSection } from './home.interface';
+import { TExperience, THeroSection, TSkill } from './home.interface';
 import AppError from '../../app/utils/AppError';
 import { sendImageToCloudinary } from '../../app/utils/sendImageToCloudinary';
-import { HeroSectionData, skillSectionData } from './home.model';
+import {
+  experienceSectionData,
+  HeroSectionData,
+  skillSectionData,
+} from './home.model';
 
 interface UploadedFiles {
   thumbnail?: Express.Multer.File[];
@@ -77,7 +81,7 @@ interface UploadedFiles {
   skill_icon?: Express.Multer.File[];
 }
 const storeSkillSectionIntoDB = async (
-  data: THeroSection,
+  data: TSkill,
   files: UploadedFiles,
   user: JwtPayload
 ) => {
@@ -115,10 +119,66 @@ const getSkillListFromDB = async () => {
   }
 };
 
+const updateSkillIntoDB = async (
+  data: TSkill,
+  files: UploadedFiles,
+  user: JwtPayload
+) => {
+  let thumbnailFile;
+  let obj: TSkill = {
+    ...data,
+  };
+
+  try {
+    if (files && files.skill_icon) {
+      thumbnailFile = files.skill_icon[0];
+      const imageName = `${user.userId}-${new Date().toISOString()}`;
+      const path = thumbnailFile?.path;
+
+      const { secure_url } = await sendImageToCloudinary(imageName, path);
+      obj.skill_icon = secure_url as string;
+    }
+
+    await skillSectionData.updateOne({ _id: data._id }, { $set: obj });
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+// experience section
+
+const storeExperienceSectionIntoDB = async (data: TExperience) => {
+  try {
+    return await experienceSectionData.create(data);
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const getAllExperiencesFromDB = async () => {
+  try {
+    return await experienceSectionData.find();
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
+const updateExperienceIntoDB = async (data: TExperience) => {
+  try {
+    await experienceSectionData.updateOne({ _id: data._id }, { $set: data });
+  } catch (err: any) {
+    throw new Error(err);
+  }
+};
+
 export const heroSectionServices = {
   storeHeroSectionIntoDB,
   getHeroListFromDB,
   updateHeroIntoDB,
   storeSkillSectionIntoDB,
   getSkillListFromDB,
+  updateSkillIntoDB,
+  storeExperienceSectionIntoDB,
+  getAllExperiencesFromDB,
+  updateExperienceIntoDB,
 };

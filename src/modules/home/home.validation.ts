@@ -33,7 +33,39 @@ const skillCreateValidationSchema = z.object({
   }),
 });
 
+const experienceCreateValidationSchema = z.object({
+  body: z.object({
+    company_name: z.string({
+      invalid_type_error: 'Company Name must be string',
+      required_error: 'Company Name is required.',
+    }),
+    currently_working: z.boolean({
+      invalid_type_error: 'Currently Working must be boolean',
+      required_error: 'Currently Working is required.',
+    }),
+    designation: z.string({
+      invalid_type_error: 'Designation must be string',
+      required_error: 'Designation is required.',
+    }),
+    end_date: z.string({
+      invalid_type_error: 'End Date must be string',
+      required_error: 'End Date is required.',
+    }),
+    start_date: z.string({
+      invalid_type_error: 'Start Date must be string',
+      required_error: 'Start Date is required',
+    }),
+    responsibilities: z.array(
+      z.string({
+        invalid_type_error: 'Responsibility must be string',
+        required_error: 'Responsibility is required',
+      })
+    ),
+  }),
+});
+
 export const heroValidations = {
   heroSectionCreateValidationSchema,
   skillCreateValidationSchema,
+  experienceCreateValidationSchema,
 };

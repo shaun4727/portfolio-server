@@ -75,10 +75,60 @@ const skillSectionList = catchAsync(async (req, res) => {
   });
 });
 
+const skillUpdate = catchAsync(async (req, res) => {
+  await heroSectionServices.updateSkillIntoDB(
+    req.body,
+    req.files as UploadedFiles,
+    req.user
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Skill section updated successfully',
+  });
+});
+
+// experience section starts
+const experienceSectionCreate = catchAsync(async (req, res) => {
+  await heroSectionServices.storeExperienceSectionIntoDB(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Experience section data stored successfully',
+  });
+});
+
+const experienceUpdate = catchAsync(async (req, res) => {
+  await heroSectionServices.updateExperienceIntoDB(req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Experience section updated successfully',
+  });
+});
+
+const getAllExperience = catchAsync(async (req, res) => {
+  const result = await heroSectionServices.getAllExperiencesFromDB();
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: 'Experiences are fetched successfully',
+    data: result,
+  });
+});
+
 export const homeControllers = {
   heroSectionCreate,
   heroSectionList,
   heroUpdate,
   skillSectionCreate,
   skillSectionList,
+  skillUpdate,
+  experienceSectionCreate,
+  getAllExperience,
+  experienceUpdate,
 };

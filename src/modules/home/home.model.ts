@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { THeroSection, TSkill } from './home.interface';
+import { TExperience, THeroSection, TSkill } from './home.interface';
 
 // Modified project schema
 const heroSectionSchema = new Schema<THeroSection>(
@@ -23,6 +23,8 @@ export const HeroSectionData = model<THeroSection>(
   heroSectionSchema
 );
 
+// skill section schema
+
 const skillSectionSchema = new Schema<TSkill>(
   {
     name: { type: String, required: true },
@@ -37,4 +39,24 @@ const skillSectionSchema = new Schema<TSkill>(
 export const skillSectionData = model<TSkill>(
   'SkillSection',
   skillSectionSchema
+);
+
+// experience section schema
+const experienceSectionSchema = new Schema<TExperience>(
+  {
+    company_name: { type: String, required: true },
+    currently_working: { type: Boolean, required: true },
+    designation: { type: String, required: true },
+    end_date: { type: String, required: true },
+    start_date: { type: String, required: true },
+    responsibilities: { type: [String], required: true },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const experienceSectionData = model<TExperience>(
+  'ExperienceSection',
+  experienceSectionSchema
 );

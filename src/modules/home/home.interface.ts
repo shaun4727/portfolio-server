@@ -12,3 +12,14 @@ export type TSkill = {
   description: string;
   skill_icon: string;
 };
+
+// experience section
+export type TExperience = {
+  _id: string;
+  company_name: string;
+  currently_working: boolean;
+  designation: string;
+  end_date: string;
+  start_date: string;
+  responsibilities: string[];
+};
