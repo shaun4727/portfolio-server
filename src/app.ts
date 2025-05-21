@@ -11,7 +11,10 @@ app.use(express.json());
 app.use(
   cors({
     // origin: true,
-    origin: ['https://portfolio-app-dashboard.vercel.app'],
+    origin: [
+      'https://portfolio-app-dashboard.vercel.app',
+      'https://my-portfolio-client-git-main-shaun-hossains-projects.vercel.app',
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
