@@ -10,8 +10,8 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: true,
-    // origin: ['https://ph-assignment-4-client-book-shop.vercel.app'],
+    // origin: true,
+    origin: ['https://portfolio-app-dashboard.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
