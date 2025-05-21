@@ -43,7 +43,7 @@ Now, project setup is done. Hit the api described below to get the expected resu
 ```json
 {
   "email": "shaun@gmail.com",
-  "password": "somepassword"
+  "password": "password"
 }
 ```
 
@@ -64,7 +64,7 @@ Now, project setup is done. Hit the api described below to get the expected resu
 
 **POST** `/api/project/create-project`
 
-**Description:** Use to create project
+**Description:** Use to create project. only admin can use
 **Request Body:**
 
 ```json
@@ -81,7 +81,7 @@ Now, project setup is done. Hit the api described below to get the expected resu
 
 **PATCH** `/api/project/update-project`
 
-**Description:** Use to update project
+**Description:** Use to update project. only admin can use
 **Request Body:**
 
 ```json
@@ -98,7 +98,19 @@ Now, project setup is done. Hit the api described below to get the expected resu
 
 **GET** `/api/project/project-list`
 
-**Description:** Use to get project list
+**Description:** Use to get project list. only admin can use
+
+## 2.4 Get a single project
+
+**GET** `/api/project/get-single-project/:projectId`
+
+**Description:** returns detail of a single project
+
+## 2.5 Get project list for user
+
+**GET** `/api/project/project-list-for-user`
+
+**Description:** return projects of a user
 
 # User routes
 
@@ -136,6 +148,156 @@ Now, project setup is done. Hit the api described below to get the expected resu
 
 **Description:** Use to update message status. is it deleted by admin or not from admin dashboard?
 
+## 4.1 Create Hero section
+
+**POST** `/api/home/hero-section-create`
+
+**Description:** Use to create hero section. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "stack": "frontend | backend | full-stack",
+  "tagline": "tag line of hero section",
+  "about_me": "description of user"
+}
+```
+
+## 4.2 Update Hero Section
+
+**PATCH** `/api/home/update-hero-section`
+**Description** used to update hero section. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "stack": "frontend | backend | full-stack",
+  "tagline": "tag line of hero section",
+  "about_me": "description of user"
+}
+```
+
+## 4.3 Get all data of hero section
+
+**GET** `/api/home/hero-section-list`
+**Description** used to get data of hero section
+
+## 4.4 Used to create skill
+
+**POST** `/api/home/create-skill`
+**Description** used to create skill section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "name": "name of skill",
+  "description": "description of that skill",
+  "skill_icon": "link of the skill icon"
+}
+```
+
+## 4.5 Used to update skill
+
+**PATCH** `/api/home/update-skill-section`
+**Description** used to update skill section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "name": "name of skill",
+  "description": "description of that skill",
+  "skill_icon": "link of the skill icon"
+}
+```
+
+## 4.6 Used to get data of all skills
+
+**GET** `/api/home/update-section-list`
+**Description** used to get list of skills
+
+## 4.7 Used to create experience
+
+**POST** `/api/home/create-experience`
+**Description** used to create experience section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "company_name": "name of company",
+  "currently_working": "true | false",
+  "designation": "designation",
+  "start_date": "YYYY-MM-DD",
+  "end_date": "YYYY-MM-DD",
+  "responsibilities": "array of responsibilities"
+}
+```
+
+## 4.8 Used to update experience
+
+**PATCH** `/api/home/create-experience`
+**Description** used to update experience section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "company_name": "name of company",
+  "currently_working": "true | false",
+  "designation": "designation",
+  "start_date": "YYYY-MM-DD",
+  "end_date": "YYYY-MM-DD",
+  "responsibilities": "array of responsibilities"
+}
+```
+
+## 4.9 Used to get list of all experiences
+
+**GET** `/api/home/create-experience`
+**Description** used to get list of all experiences
+
+## 4.10 Used to create blogs
+
+**POST** `/api/home/create-blog`
+**Description** used to create blog section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "content": "blog post",
+  "excerpt": "short description of post",
+  "question": "question"
+}
+```
+
+## 4.11 Used to update blogs
+
+**PATCH** `/api/home/create-blog`
+**Description** used to update blog section data. only admin can use
+
+**Request Body:**
+
+```json
+{
+  "content": "blog post",
+  "excerpt": "short description of post",
+  "question": "question"
+}
+```
+
+## 4.11 Used to update blogs
+
+**GET** `/api/home/create-blog`
+**Description** used to get all the blogs section data.
+
+```
+
 # Changes in code
 
 In app.ts, change origin as your client website address.
+```
